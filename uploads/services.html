@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<meta name="theme-color" content="#ffffff">
+<title>Services — IH-FoA</title>
+<link rel="stylesheet" href="site.css">
+<style>
+.services-intro { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; margin-bottom:80px; }
+.srv-intro-imgs { position:relative; height:460px; }
+.srv-main { position:absolute; top:0; right:0; width:70%; height:300px; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-lg); }
+.srv-sub  { position:absolute; bottom:0; left:0; width:55%; height:240px; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-lg); border:4px solid white; }
+.srv-sub2 { position:absolute; top:220px; right:calc(30% + 10px); width:28%; height:130px; border-radius:var(--radius); overflow:hidden; border:3px solid white; box-shadow:var(--shadow); }
+
+.services-filter { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:48px; }
+.filter-btn { padding:8px 20px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; transition:all .2s; border:1.5px solid #e2e8f0; background:white; color:var(--muted); }
+.filter-btn.active, .filter-btn:hover { background:var(--blue-800); color:white; border-color:var(--blue-800); }
+
+.service-detail { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; padding:80px 0; border-top:1px solid #e2e8f0; }
+.service-detail:first-child { border-top:none; padding-top:0; }
+.service-detail.alt { direction:rtl; }
+.service-detail.alt > * { direction:ltr; }
+.service-detail-img { position:relative; }
+.sd-img-wrap { border-radius:var(--radius); overflow:hidden; height:340px; }
+.sd-badge { position:absolute; bottom:-16px; right:20px; background:white; border-radius:10px; padding:14px 18px; box-shadow:var(--shadow); border-left:4px solid var(--blue-600); }
+.sd-badge strong { display:block; font-size:18px; font-weight:800; color:var(--blue-900); }
+.sd-badge span { font-size:12px; color:var(--muted); }
+
+.service-detail h3 { font-size:28px; font-weight:700; margin-bottom:12px; color:var(--dark-2); }
+.service-bullets { list-style:none; display:flex; flex-direction:column; gap:10px; margin:20px 0 28px; }
+.service-bullets li { display:flex; align-items:flex-start; gap:10px; font-size:14px; color:var(--dark-2); }
+.service-bullets li::before { content:'✓'; width:20px; height:20px; border-radius:50%; background:var(--green-100); color:var(--green-700); font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+
+.faq-item { display:flex; justify-content:space-between; align-items:center; padding:20px 0; border-bottom:1px solid #e2e8f0; cursor:pointer; }
+.faq-item:first-child { border-top:1px solid #e2e8f0; }
+.faq-q { font-size:16px; font-weight:600; color:var(--dark-2); }
+.faq-icon { font-size:22px; color:var(--blue-800); flex-shrink:0; transition:transform .3s; }
+.faq-item.open .faq-icon { transform:rotate(45deg); }
+.faq-a { max-height:0; overflow:hidden; font-size:14px; color:var(--muted); transition:max-height .35s ease, padding-bottom .35s; padding-bottom:0; }
+
+/* video section */
+.video-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.video-item { border-radius:var(--radius); overflow:hidden; position:relative; cursor:pointer; }
+.video-item .vi-bg { height:200px; background:linear-gradient(135deg,#1a2a4a,#061a0e); display:flex; align-items:center; justify-content:center; }
+.video-item .vi-play { width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,.15); backdrop-filter:blur(8px); border:2px solid rgba(255,255,255,.3); display:flex; align-items:center; justify-content:center; color:white; font-size:18px; transition:all .3s; }
+.video-item:hover .vi-play { background:var(--blue-800); transform:scale(1.1); }
+.video-item .vi-label { position:absolute; bottom:12px; left:14px; color:rgba(255,255,255,.6); font-size:12px; }
+.video-item .vi-tag { position:absolute; top:12px; left:14px; background:rgba(255,255,255,.12); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.15); border-radius:6px; padding:4px 10px; color:rgba(255,255,255,.8); font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; }
+</style>
+</head>
+<body>
+<nav id="site-nav" class="scrolled">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><div class="logo-mark">IH</div>IH-FoA<span class="logo-accent">.</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="coverage.html">Coverage</a>
+      <a href="resources.html">Resources</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <div class="nav-cta">
+      <span class="nav-phone">(678) 740-3870</span>
+      <a href="contact.html" class="btn btn-green">Schedule Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><strong>Services</strong></div>
+    <h1>Industrial Hygiene Services</h1>
+    <p>Comprehensive exposure assessment and OSHA compliance support — from air sampling to written programs.</p>
+  </div>
+</div>
+
+<!-- FLIP CARDS OVERVIEW -->
+<section class="section bg-mesh">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="text-center mb-12" data-reveal>
+      <span class="eyebrow">Our Services</span>
+      <h2>What We Do</h2>
+      <p style="max-width:520px;margin:14px auto 0;">Hover any card to learn more about each service. Click to explore details below.</p>
+    </div>
+    <div class="flip-grid">
+      <!-- Card 1 -->
+      <div class="flip-card" data-reveal data-delay="1">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div class="fi-img"><div class="img-ph img-ph-dark" style="height:100%;border-radius:var(--radius);">Air sampling photo</div></div>
+            <div class="fi-overlay"></div>
+            <div class="fi-tag">Exposure Monitoring</div>
+            <h4>Air Sampling</h4>
+          </div>
+          <div class="flip-back">
+            <h4>Air Sampling &amp; Exposure Monitoring</h4>
+            <p>Personal and area sampling for dust, silica, metals, VOCs, and airborne contaminants. OSHA defensible reporting using NIOSH/OSHA methods with AIHA-LAP lab analysis.</p>
+            <a href="#air-sampling" class="flip-link">Learn More →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="flip-card" data-reveal data-delay="2">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div class="fi-img"><div class="img-ph img-ph-dark" style="height:100%;border-radius:var(--radius);">Noise survey photo</div></div>
+            <div class="fi-overlay"></div>
+            <div class="fi-tag">Noise &amp; Hearing</div>
+            <h4>Noise Surveys</h4>
+          </div>
+          <div class="flip-back">
+            <h4>Noise Surveys &amp; Dosimetry</h4>
+            <p>Area noise mapping, personal dosimetry, and hearing conservation program support. Aligned with OSHA 1910.95 and ACGIH TLVs.</p>
+            <a href="#noise" class="flip-link">Learn More →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="flip-card" data-reveal data-delay="3">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div class="fi-img"><div class="img-ph img-ph-dark" style="height:100%;border-radius:var(--radius);">IAQ photo</div></div>
+            <div class="fi-overlay"></div>
+            <div class="fi-tag">Air Quality</div>
+            <h4>Indoor Air Quality</h4>
+          </div>
+          <div class="flip-back">
+            <h4>Indoor Air Quality &amp; Ventilation</h4>
+            <p>Investigation of occupant complaints, airflow performance, and airborne contaminant indicators. Comprehensive IAQ assessments for offices, schools, and healthcare facilities.</p>
+            <a href="#iaq" class="flip-link">Learn More →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="flip-card" data-reveal data-delay="1">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div class="fi-img"><div class="img-ph img-ph-dark" style="height:100%;border-radius:var(--radius);">OSHA audit photo</div></div>
+            <div class="fi-overlay"></div>
+            <div class="fi-tag">Compliance</div>
+            <h4>OSHA Compliance Audits</h4>
+          </div>
+          <div class="flip-back">
+            <h4>OSHA Compliance Audits &amp; Mock Inspections</h4>
+            <p>Mock OSHA inspections to identify gaps before regulators do. Written programs, corrective action planning, and regulatory navigation support.</p>
+            <a href="#compliance" class="flip-link">Learn More →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="flip-card" data-reveal data-delay="2">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div class="fi-img"><div class="img-ph img-ph-dark" style="height:100%;border-radius:var(--radius);">Respiratory testing photo</div></div>
+            <div class="fi-overlay"></div>
+            <div class="fi-tag">Respiratory</div>
+            <h4>Respiratory Protection</h4>
+          </div>
+          <div class="flip-back">
+            <h4>Respiratory Protection Program</h4>
+            <p>Quantitative and qualitative fit testing, written respiratory protection programs, and medical evaluation coordination per OSHA 1910.134.</p>
+            <a href="#respiratory" class="flip-link">Learn More →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="flip-card" data-reveal data-delay="3">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div class="fi-img"><div class="img-ph img-ph-dark" style="height:100%;border-radius:var(--radius);">Vibration / HazMat photo</div></div>
+            <div class="fi-overlay"></div>
+            <div class="fi-tag">Specialized</div>
+            <h4>Vibration &amp; HazMat</h4>
+          </div>
+          <div class="flip-back">
+            <h4>Vibration &amp; HazMat Services</h4>
+            <p>Hand-arm and whole-body vibration assessments aligned with ACGIH/ISO guidance. HazMat response, HazCom written programs, and water quality / Legionella risk assessments.</p>
+            <a href="#specialized" class="flip-link">Learn More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO OVERVIEW -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="text-center mb-12" data-reveal>
+      <span class="eyebrow blue">See IH-FoA in Action</span>
+      <h2 class="text-white">Field &amp; Lab Overview</h2>
+    </div>
+    <div class="video-grid" data-reveal>
+      <div class="video-item">
+        <div class="vi-bg"><div class="vi-play">▶</div></div>
+        <div class="vi-tag">Air Sampling</div>
+        <div class="vi-label">Field Collection Methods</div>
+      </div>
+      <div class="video-item">
+        <div class="vi-bg"><div class="vi-play">▶</div></div>
+        <div class="vi-tag">Lab Analysis</div>
+        <div class="vi-label">AIHA-LAP Accredited Results</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE DETAILS -->
+<section class="section" style="background:white;" id="air-sampling">
+  <div class="container">
+
+    <div class="service-detail">
+      <div class="service-detail-img" data-reveal="left">
+        <div class="sd-img-wrap">
+          <div class="img-ph img-ph-dark" style="height:100%;">
+            <svg width="52" height="52" fill="none" viewBox="0 0 52 52"><path d="M26 10v32M18 18v16M34 14v24M10 26h8M34 26h8" stroke="rgba(255,255,255,.3)" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Air sampling field work</span>
+          </div>
+        </div>
+        <div class="sd-badge"><strong>NIOSH</strong><span>Certified Methods</span></div>
+      </div>
+      <div data-reveal="right">
+        <span class="eyebrow">Exposure Monitoring</span>
+        <h3>Air Sampling &amp; Exposure Monitoring</h3>
+        <p style="margin-bottom:16px;">Personal and area sampling for dust, silica, metals, VOCs, combustible dust, and a wide range of airborne chemical contaminants. All sampling uses NIOSH/OSHA certified methods with AIHA-LAP accredited laboratory analysis.</p>
+        <ul class="service-bullets">
+          <li>Crystalline silica — personal and area sampling per OSHA 1926.1153 / 1910.1053</li>
+          <li>Heavy metals (lead, hexavalent chromium, cadmium, beryllium)</li>
+          <li>Volatile organic compounds (VOCs) and solvents</li>
+          <li>Combustible dust characterization</li>
+          <li>Multi-analyte exposure profiles</li>
+          <li>Full LOD/LOQ documentation in every report</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary">Request Air Sampling</a>
+      </div>
+    </div>
+
+    <div class="service-detail alt" id="noise">
+      <div class="service-detail-img" data-reveal="right">
+        <div class="sd-img-wrap">
+          <div class="img-ph" style="height:100%;">
+            <svg width="52" height="52" fill="none" viewBox="0 0 52 52"><path d="M14 26c0-6.627 5.373-12 12-12v24c-6.627 0-12-5.373-12-12z" stroke="#94a3b8" stroke-width="2"/><path d="M34 18a12 12 0 010 16M38 14a18 18 0 010 24" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Noise survey / dosimetry</span>
+          </div>
+        </div>
+        <div class="sd-badge" style="border-left-color:var(--green-500);"><strong>85 dBA</strong><span>Action Level Threshold</span></div>
+      </div>
+      <div data-reveal="left">
+        <span class="eyebrow">Noise &amp; Hearing</span>
+        <h3>Noise Surveys &amp; Dosimetry</h3>
+        <p style="margin-bottom:16px;">Comprehensive noise exposure assessment from area surveys to full personal dosimetry programs. We help you understand your noise hazards and build a defensible hearing conservation program.</p>
+        <ul class="service-bullets">
+          <li>Personal noise dosimetry (OSHA 1910.95)</li>
+          <li>Area noise mapping and contour mapping</li>
+          <li>Hearing conservation program development</li>
+          <li>Engineering control recommendations</li>
+          <li>ACGIH TLV and NIOSH REL comparisons</li>
+          <li>Annual monitoring program design</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary">Request Noise Survey</a>
+      </div>
+    </div>
+
+    <div class="service-detail" id="iaq">
+      <div class="service-detail-img" data-reveal="left">
+        <div class="sd-img-wrap">
+          <div class="img-ph img-ph-dark" style="height:100%;">
+            <svg width="52" height="52" fill="none" viewBox="0 0 52 52"><path d="M10 36c5-10 12-16 16-10s11 14 16 4" stroke="rgba(255,255,255,.3)" stroke-width="2" stroke-linecap="round"/><circle cx="26" cy="20" r="8" stroke="rgba(255,255,255,.3)" stroke-width="2"/></svg>
+            <span>IAQ investigation</span>
+          </div>
+        </div>
+        <div class="sd-badge"><strong>IAQ</strong><span>ASHRAE 62.1 Guidance</span></div>
+      </div>
+      <div data-reveal="right">
+        <span class="eyebrow">Indoor Air Quality</span>
+        <h3>Indoor Air Quality &amp; Ventilation</h3>
+        <p style="margin-bottom:16px;">Investigation of occupant health complaints, airflow performance analysis, and airborne contaminant assessment for offices, schools, healthcare, and commercial facilities.</p>
+        <ul class="service-bullets">
+          <li>Occupant complaint investigation and root cause analysis</li>
+          <li>CO₂, temperature, humidity, and TVOC baseline surveys</li>
+          <li>HVAC performance and ventilation rate assessment</li>
+          <li>Mold and biological contaminant sampling</li>
+          <li>Post-remediation clearance sampling</li>
+          <li>ASHRAE 62.1 compliance review</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary">Request IAQ Assessment</a>
+      </div>
+    </div>
+
+    <div class="service-detail alt" id="compliance">
+      <div class="service-detail-img" data-reveal="right">
+        <div class="sd-img-wrap">
+          <div class="img-ph" style="height:100%;">
+            <svg width="52" height="52" fill="none" viewBox="0 0 52 52"><rect x="12" y="8" width="28" height="36" rx="3" stroke="#94a3b8" stroke-width="2"/><path d="M18 18h16M18 24h12M18 30h8" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/><path d="M30 36l4 4 8-8" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>OSHA compliance documentation</span>
+          </div>
+        </div>
+        <div class="sd-badge" style="border-left-color:var(--green-500);"><strong>Mock</strong><span>OSHA Inspections</span></div>
+      </div>
+      <div data-reveal="left">
+        <span class="eyebrow">OSHA Compliance</span>
+        <h3>OSHA Compliance Audits &amp; Written Programs</h3>
+        <p style="margin-bottom:16px;">We conduct the same walkthrough OSHA will — before they show up. Comprehensive compliance gap analysis across all relevant OSHA standards with actionable corrective action plans.</p>
+        <ul class="service-bullets">
+          <li>Mock OSHA general industry and construction inspections</li>
+          <li>Written compliance program development (HazCom, lockout/tagout, respiratory, etc.)</li>
+          <li>Regulatory gap analysis and priority ranking</li>
+          <li>Employee training support</li>
+          <li>Post-citation defense assistance</li>
+          <li>Annual compliance review programs</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary">Schedule OSHA Audit</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section bg-light">
+  <div class="container" style="max-width:800px;">
+    <div class="text-center mb-12" data-reveal>
+      <span class="eyebrow">FAQ</span>
+      <h2>Common Questions</h2>
+    </div>
+    <div data-reveal>
+      <div class="faq-item"><span class="faq-q">What types of air sampling do you perform?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">We sample for silica, metals (lead, cadmium, chromium), VOCs, combustible dust, and a wide range of airborne chemical contaminants. All sampling uses NIOSH/OSHA certified methods with AIHA-LAP accredited laboratory analysis and full LOD/LOQ documentation.</div>
+      <div class="faq-item"><span class="faq-q">How quickly can you deploy onsite?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">In most cases we can be onsite within 24–48 hours. Contact us directly for urgent needs or potential regulatory situations.</div>
+      <div class="faq-item"><span class="faq-q">Do you help write compliance programs after identifying gaps?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes. We don't just hand you a findings list — we develop practical, usable written programs (respiratory protection, HazCom, hearing conservation, lockout/tagout, and more) based on your specific facility and processes.</div>
+      <div class="faq-item"><span class="faq-q">Are your sampling reports OSHA-defensible?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">All reports include complete chain-of-custody documentation, NIOSH/OSHA sampling method citations, full analytical results with LOD/LOQ, and are designed to withstand regulatory scrutiny.</div>
+      <div class="faq-item"><span class="faq-q">What industries do you serve?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Manufacturing, warehousing, construction, healthcare, schools, commercial office facilities, and property management companies across 12 Southeast states.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo">IH-FoA<span>.</span></div><p class="footer-tagline">Industrial Hygiene Forensics of Americus, LLC</p></div>
+      <div><h5>Services</h5><ul><li><a href="services.html">Air Sampling</a></li><li><a href="services.html">Noise Surveys</a></li><li><a href="services.html">OSHA Audits</a></li><li><a href="services.html">Respiratory Testing</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="coverage.html">Coverage</a></li><li><a href="resources.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li><a href="tel:6787403870">(678) 740-3870</a></li><li><a href="mailto:info@ih-foa.com">info@ih-foa.com</a></li><li style="color:rgba(255,255,255,.35);font-size:13px;">Marietta, GA 30064</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Industrial Hygiene Forensics of Americus, LLC</span></div>
+  </div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>

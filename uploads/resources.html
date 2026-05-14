@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<meta name="theme-color" content="#ffffff">
+<title>Resources &amp; Blog — IH-FoA</title>
+<link rel="stylesheet" href="site.css">
+<style>
+.blog-hero { display:grid; grid-template-columns:1.4fr 1fr; gap:40px; margin-bottom:64px; }
+.blog-featured {
+  border-radius:var(--radius); overflow:hidden; background:white;
+  box-shadow:var(--shadow); transition:var(--transition); cursor:pointer;
+}
+.blog-featured:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+.bf-thumb { height:320px; }
+.bf-body { padding:32px; }
+.bf-tag { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--blue-800); margin-bottom:10px; }
+.bf-body h3 { font-size:26px; font-weight:700; color:var(--dark-2); margin-bottom:12px; line-height:1.3; }
+.bf-body p { font-size:15px; color:var(--muted); margin-bottom:20px; }
+.bf-meta { display:flex; align-items:center; gap:16px; font-size:13px; color:var(--muted); border-top:1px solid #f1f5f9; padding-top:16px; }
+.bf-author { display:flex; align-items:center; gap:8px; }
+.bf-author-av { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--blue-600),var(--green-500)); color:white; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+
+.blog-sidebar { display:flex; flex-direction:column; gap:16px; }
+.bs-card {
+  border-radius:10px; overflow:hidden; background:white;
+  box-shadow:0 2px 12px rgba(0,0,0,.06); display:flex; cursor:pointer;
+  transition:var(--transition); border:1px solid #f1f5f9;
+}
+.bs-card:hover { box-shadow:var(--shadow); transform:translateX(4px); }
+.bs-thumb { width:100px; flex-shrink:0; }
+.bs-body { padding:14px 16px; }
+.bs-tag { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--green-700); margin-bottom:4px; }
+.bs-body h4 { font-size:14px; font-weight:700; color:var(--dark-2); line-height:1.4; margin-bottom:4px; }
+.bs-body span { font-size:12px; color:var(--muted); }
+
+.blog-filters { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:40px; }
+.filter-pill { padding:7px 18px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; transition:all .2s; border:1.5px solid #e2e8f0; background:white; color:var(--muted); }
+.filter-pill.active, .filter-pill:hover { background:var(--blue-800); color:white; border-color:var(--blue-800); }
+
+.blog-full-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+
+.newsletter-box {
+  border-radius:var(--radius); padding:48px;
+  background:linear-gradient(135deg,var(--blue-900),var(--green-900));
+  text-align:center; position:relative; overflow:hidden;
+}
+.newsletter-box::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(255,255,255,.05) 0%,transparent 70%);
+}
+.newsletter-box h3 { color:white; font-size:28px; margin-bottom:10px; position:relative; }
+.newsletter-box p  { color:rgba(255,255,255,.6); margin-bottom:28px; position:relative; }
+.newsletter-form { display:flex; gap:12px; max-width:440px; margin:0 auto; position:relative; }
+.newsletter-form input { flex:1; padding:13px 18px; border-radius:8px; border:none; font-family:'Plus Jakarta Sans',sans-serif; font-size:15px; outline:none; }
+</style>
+</head>
+<body>
+<nav id="site-nav" class="scrolled">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><div class="logo-mark">IH</div>IH-FoA<span class="logo-accent">.</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="coverage.html">Coverage</a>
+      <a href="resources.html" class="active">Resources</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <div class="nav-cta">
+      <a href="tel:6787403870" class="nav-phone">☎ (678) 740-3870</a>
+      <a href="tel:6787403870" class="btn">Talk to an Expert</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><strong>Resources</strong></div>
+    <h1>IH &amp; Safety Resources</h1>
+    <p>Expert insights on industrial hygiene, OSHA compliance, and workplace exposure monitoring from the IH-FoA team.</p>
+  </div>
+</div>
+
+<!-- FEATURED + SIDEBAR -->
+<section class="section" style="background:white;">
+  <div class="container">
+    <div class="blog-hero" data-reveal>
+      <!-- Featured post -->
+      <div class="blog-featured">
+        <div class="bf-thumb">
+          <div class="img-ph" style="height:320px;border-radius:0;">
+            <svg width="52" height="52" fill="none" viewBox="0 0 52 52"><path d="M8 40l12-16 8 10 7-9 13 15" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Featured article photo</span>
+          </div>
+        </div>
+        <div class="bf-body">
+          <div class="bf-tag">⭐ Featured · Silica Safety</div>
+          <h3>OSHA's Crystalline Silica Standard: A Complete Field Guide for Manufacturing Compliance</h3>
+          <p>Everything your facility needs to know about PEL requirements, exposure assessment triggers, written exposure control plans, and the engineering controls OSHA expects to see.</p>
+          <div class="bf-meta">
+            <div class="bf-author"><div class="bf-author-av">IH</div><span>IH-FoA Team</span></div>
+            <span>·</span>
+            <span>April 15, 2026</span>
+            <span>·</span>
+            <span>12 min read</span>
+          </div>
+        </div>
+      </div>
+      <!-- Sidebar posts -->
+      <div class="blog-sidebar">
+        <div class="bs-card">
+          <div class="bs-thumb"><div class="img-ph" style="height:100%;border-radius:0;min-height:90px;"></div></div>
+          <div class="bs-body">
+            <div class="bs-tag">Noise</div>
+            <h4>When Is a Noise Survey Required? OSHA 1910.95 Explained</h4>
+            <span>March 2026 · 8 min</span>
+          </div>
+        </div>
+        <div class="bs-card">
+          <div class="bs-thumb"><div class="img-ph" style="height:100%;border-radius:0;min-height:90px;"></div></div>
+          <div class="bs-body">
+            <div class="bs-tag">IAQ</div>
+            <h4>5 Signs Your Facility Has an Indoor Air Quality Problem</h4>
+            <span>February 2026 · 5 min</span>
+          </div>
+        </div>
+        <div class="bs-card">
+          <div class="bs-thumb"><div class="img-ph" style="height:100%;border-radius:0;min-height:90px;"></div></div>
+          <div class="bs-body">
+            <div class="bs-tag">Compliance</div>
+            <h4>Preparing for an OSHA Inspection: The IH-FoA Readiness Checklist</h4>
+            <span>January 2026 · 10 min</span>
+          </div>
+        </div>
+        <div class="bs-card">
+          <div class="bs-thumb"><div class="img-ph" style="height:100%;border-radius:0;min-height:90px;"></div></div>
+          <div class="bs-body">
+            <div class="bs-tag">Respiratory</div>
+            <h4>Respiratory Protection Programs: What OSHA 1910.134 Actually Requires</h4>
+            <span>December 2025 · 7 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="blog-filters" data-reveal>
+      <div class="filter-pill active">All Topics</div>
+      <div class="filter-pill">Silica &amp; Dust</div>
+      <div class="filter-pill">Noise &amp; Hearing</div>
+      <div class="filter-pill">Indoor Air Quality</div>
+      <div class="filter-pill">OSHA Compliance</div>
+      <div class="filter-pill">Respiratory Protection</div>
+      <div class="filter-pill">Metals &amp; VOCs</div>
+      <div class="filter-pill">Legionella</div>
+    </div>
+
+    <!-- Full grid -->
+    <div class="blog-full-grid">
+      <div class="blog-card" data-reveal data-delay="1">
+        <div class="blog-thumb"><div class="img-ph" style="height:200px;border-radius:var(--radius) var(--radius) 0 0;"></div></div>
+        <div class="blog-body">
+          <div class="blog-tag">Metals Exposure</div>
+          <h4>Lead in Manufacturing: What Has Changed Since OSHA Updated the Standard</h4>
+          <p>Updated PEL thresholds, blood lead level action levels, and what manufacturers must do differently today.</p>
+          <div class="blog-meta"><span>April 2026</span><span>·</span><span>9 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-reveal data-delay="2">
+        <div class="blog-thumb"><div class="img-ph" style="height:200px;border-radius:var(--radius) var(--radius) 0 0;"></div></div>
+        <div class="blog-body">
+          <div class="blog-tag">Legionella</div>
+          <h4>Water Management Plans for Commercial Buildings: Legionella Risk Under ASHRAE 188</h4>
+          <p>Who needs a water management plan, what it must contain, and how to conduct a Legionella risk assessment.</p>
+          <div class="blog-meta"><span>March 2026</span><span>·</span><span>7 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-reveal data-delay="3">
+        <div class="blog-thumb"><div class="img-ph" style="height:200px;border-radius:var(--radius) var(--radius) 0 0;"></div></div>
+        <div class="blog-body">
+          <div class="blog-tag">HazCom</div>
+          <h4>HazCom 2012 (GHS): Is Your SDS Binder Actually Compliant?</h4>
+          <p>The common HazCom gaps OSHA finds during inspections — and how to close them before they become citations.</p>
+          <div class="blog-meta"><span>February 2026</span><span>·</span><span>6 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-reveal data-delay="1">
+        <div class="blog-thumb"><div class="img-ph" style="height:200px;border-radius:var(--radius) var(--radius) 0 0;"></div></div>
+        <div class="blog-body">
+          <div class="blog-tag">Combustible Dust</div>
+          <h4>Combustible Dust Hazard Analysis: The IH Approach to NFPA 652</h4>
+          <p>Why combustible dust remains one of the most underestimated hazards in manufacturing — and how to assess it.</p>
+          <div class="blog-meta"><span>January 2026</span><span>·</span><span>8 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-reveal data-delay="2">
+        <div class="blog-thumb"><div class="img-ph" style="height:200px;border-radius:var(--radius) var(--radius) 0 0;"></div></div>
+        <div class="blog-body">
+          <div class="blog-tag">Vibration</div>
+          <h4>Hand-Arm Vibration Syndrome: When Should You Assess Tool Vibration?</h4>
+          <p>ACGIH TLVs for hand-arm vibration, assessment tools, and the control hierarchy for power tool users.</p>
+          <div class="blog-meta"><span>December 2025</span><span>·</span><span>6 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-reveal data-delay="3">
+        <div class="blog-thumb"><div class="img-ph" style="height:200px;border-radius:var(--radius) var(--radius) 0 0;"></div></div>
+        <div class="blog-body">
+          <div class="blog-tag">Respiratory</div>
+          <h4>Fit Testing Frequency: OSHA Requirements &amp; Best Practices for Respirator Programs</h4>
+          <p>Annual fit testing, change-out schedules, and what documentation OSHA will ask for during an inspection.</p>
+          <div class="blog-meta"><span>November 2025</span><span>·</span><span>5 min read</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section-sm" style="padding:64px 0;background:var(--light);">
+  <div class="container">
+    <div class="newsletter-box" data-reveal>
+      <h3>Stay Ahead of OSHA</h3>
+      <p>Get practical IH and compliance insights delivered monthly. No spam — just useful field guidance.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="your@email.com">
+        <button class="btn btn-primary" style="white-space:nowrap;">Subscribe →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo">IH-FoA<span>.</span></div><p class="footer-tagline">Industrial Hygiene Forensics of Americus, LLC</p></div>
+      <div><h5>Services</h5><ul><li><a href="services.html">Air Sampling</a></li><li><a href="services.html">Noise Surveys</a></li><li><a href="services.html">OSHA Audits</a></li><li><a href="services.html">Respiratory Testing</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="coverage.html">Coverage</a></li><li><a href="resources.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li><a href="tel:6787403870">(678) 740-3870</a></li><li><a href="mailto:info@ih-foa.com">info@ih-foa.com</a></li><li style="color:rgba(255,255,255,.35);font-size:13px;">Marietta, GA 30064</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Industrial Hygiene Forensics of Americus, LLC</span></div>
+  </div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>
