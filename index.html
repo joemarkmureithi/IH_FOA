@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yygg_vb.woff2" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=optional" onload="this.rel='stylesheet'">
-<link rel="preload" as="image" href="images/hero-card-img-1.webp" fetchpriority="high">
-  <link rel="preload" as="image" href="images/hero-mobile.webp" media="(max-width: 768px)">
+<link rel="preload" as="image" href="images/hero-card-img-1.webp" fetchpriority="high" media="(min-width: 901px)">
+  <link rel="preload" as="image" href="images/hero-mobile.webp" fetchpriority="high" media="(max-width: 900px)">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=optional" rel="stylesheet"></noscript>
 <style>
 /* ── HERO TAG + HEADLINE PROPORTION FIX ── */
@@ -1371,11 +1371,12 @@ nav .btn:hover {
   if (upperEl)  upperEl.style.willChange  = 'transform';
   if (statsEl)  statsEl.style.willChange  = 'transform';
 
+  /* ── Read geometry BEFORE any writes to avoid forced reflow ── */
+  var heroH = hero.offsetHeight;
+
   var scrollY  = window.scrollY;
   var mx = 0, my = 0;
   var raf = false;
-  var heroH = 0;
-  requestAnimationFrame(function() { heroH = hero.offsetHeight; });
   var cueDone = false;
 
   /* ── Render function — parallax disabled ── */
@@ -1403,19 +1404,27 @@ nav .btn:hover {
 
   function req() { if (!raf) { raf = true; requestAnimationFrame(render); } }
 
-  /* ── Scroll listener ── */
-  window.addEventListener('scroll', function () {
-    scrollY = window.scrollY;
-    req();
-    if (scrollCue && !cueDone && scrollY > 50) {
-      cueDone = true;
-      scrollCue.classList.add('hidden');
-    }
-  }, { passive: true });
+  /* ── Defer scroll + resize listeners until browser is idle ── */
+  var addListeners = function() {
+    window.addEventListener('scroll', function () {
+      scrollY = window.scrollY;
+      req();
+      if (scrollCue && !cueDone && scrollY > 50) {
+        cueDone = true;
+        scrollCue.classList.add('hidden');
+      }
+    }, { passive: true });
 
-  window.addEventListener('resize', function () {
-    heroH = hero.offsetHeight;
-  }, { passive: true });
+    window.addEventListener('resize', function () {
+      heroH = hero.offsetHeight;
+    }, { passive: true });
+  };
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(addListeners, { timeout: 2000 });
+  } else {
+    setTimeout(addListeners, 200);
+  }
 
   /* ── Mouse tracking disabled ── */
 

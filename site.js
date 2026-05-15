@@ -90,19 +90,25 @@
       autoTimer = setInterval(() => goTo((current + 1) % totalPages()), 5000);
     }
 
-    measureCardW();
-    buildDots();
-    goTo(0);
-    startAuto();
+    requestAnimationFrame(() => {
+      measureCardW();
+      buildDots();
+      goTo(0);
+      startAuto();
+    });
 
     track.addEventListener('mouseenter', () => clearInterval(autoTimer));
     track.addEventListener('mouseleave', startAuto);
 
+    let resizeTimer;
     window.addEventListener('resize', () => {
-      current = 0;
-      measureCardW();
-      buildDots();
-      goTo(0);
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        current = 0;
+        measureCardW();
+        buildDots();
+        goTo(0);
+      }, 150);
     }, { passive: true });
   }
 
@@ -155,11 +161,26 @@
   const mobileToggle = document.querySelector('.mobile-toggle');
   const mobileMenu = document.querySelector('.mobile-menu');
   if (mobileToggle && mobileMenu) {
+    let savedScroll = 0;
+
+    function lockScroll() {
+      savedScroll = window.scrollY;
+      document.body.style.cssText += `;position:fixed;top:-${savedScroll}px;width:100%;overflow:hidden;`;
+    }
+
+    function unlockScroll() {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      window.scrollTo(0, savedScroll);
+    }
+
     mobileToggle.addEventListener('click', () => {
       const isOpen = mobileMenu.classList.contains('open');
       mobileMenu.classList.toggle('open');
       mobileToggle.classList.toggle('open');
-      document.body.classList.toggle('menu-open', !isOpen);
+      isOpen ? unlockScroll() : lockScroll();
     });
 
     // Close menu on link click
@@ -167,7 +188,7 @@
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
         mobileToggle.classList.remove('open');
-        document.body.classList.remove('menu-open');
+        unlockScroll();
       });
     });
 
@@ -176,7 +197,7 @@
       if (e.target === mobileMenu) {
         mobileMenu.classList.remove('open');
         mobileToggle.classList.remove('open');
-        document.body.classList.remove('menu-open');
+        unlockScroll();
       }
     });
   }
